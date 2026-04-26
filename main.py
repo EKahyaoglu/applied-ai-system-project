@@ -3,7 +3,7 @@ from retriever import Retriever
 from agent import Agent
 from datetime import datetime
 
-# --- Setup demo data ---
+# Setup Demo Data (Agentic Workflow)
 owner = Owner("George")
 pet1 = Pet("Barkus", "dog")
 pet2 = Pet("Leo", "cat")
@@ -17,7 +17,6 @@ pet2.add_task(Task("Vet visit", "09:00", "monthly", due_date=today))
 pet1.add_task(Task("Playtime", "10:00", "weekly", due_date=today))
 pet2.add_task(Task("Medication", "10:00", "daily", due_date=today))
 
-# --- Agentic Workflow + RAG Demo ---
 retriever = Retriever()
 scheduler = Scheduler(owner)
 agent = Agent(owner, scheduler, retriever)
