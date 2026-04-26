@@ -1,0 +1,10 @@
+graph TD
+    A[User] -->|inputs| B[Streamlit UI]
+    B -->|creates/edits| C[Owner, Pet, Task]
+    C -->|managed by| D[Scheduler]
+    D -->|uses| E[Agent]
+    E -->|retrieves info| F[Retriever]
+    F -->|searches| G[Assets/Knowledge Base]
+    E -->|returns plan| B
+    D -->|detects| H[Conflicts]
+    B -->|shows| I[Schedule, Explanations, Warnings]
