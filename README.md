@@ -3,6 +3,9 @@
 **GitHub Repository:**
 https://github.com/EKahyaoglu/applied-ai-system-project
 
+**Video Link:**
+https://www.youtube.com/watch?v=zY8fmFipCf8&feature=youtu.be
+
 # PawPal Scheduler
 
 ## Title & Summary
