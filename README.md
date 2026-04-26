@@ -1,76 +1,127 @@
-# PawPal Deluxe (Module 2 Project)
+# PawPal Deluxe
 
-You are building **PawPal+**, a Streamlit app that helps a pet owner plan care tasks for their pet.
+## Title & Summary
 
-## Scenario
+**PawPal Deluxe** is a smart assistant for pet owners, designed to automate and optimize daily pet care routines. It helps users track, schedule, and manage all pet-related tasks—feeding, walks, medication, grooming, and more—while leveraging advanced AI to plan, retrieve relevant information, and adapt to changing needs. This project matters because it brings together agentic AI workflows and retrieval-augmented generation (RAG) to make pet care reliable, explainable, and stress-free.
 
-A busy pet owner needs help staying consistent with pet care. They want an assistant that can:
+---
 
-- Track pet care tasks (walks, feeding, meds, enrichment, grooming, etc.)
-- Consider constraints (time available, priority, owner preferences)
-- Produce a daily plan and explain why it chose that plan
+## Architecture Overview
 
-Your job is to design the system first (UML), then implement the logic in Python, then connect it to the Streamlit UI.
+PawPal Deluxe is built around a modular, object-oriented core:
+- **Owner, Pet, Task, Scheduler:** Represent the real-world entities and handle scheduling, recurrence, and conflict detection.
+- **Retriever (RAG):** Searches a knowledge base (assets) for relevant care tips or instructions.
+- **Agent (Agentic Workflow):** Accepts user goals, plans steps, retrieves information as needed, acts (adds/schedules tasks), and checks its own work.
+- **Streamlit UI (optional):** For user-friendly interaction (not required to run core logic).
 
-## What you will build
+**System Diagram:**
+- Owner → Pet(s) → Task(s)
+- Scheduler manages all tasks for an owner
+- Agent orchestrates planning and retrieval
+- Retriever provides context-aware information
 
-Your final app should:
+---
 
-- Let a user enter basic owner + pet info
-- Let a user add/edit tasks (duration + priority at minimum)
-- Generate a daily schedule/plan based on constraints and priorities
-- Display the plan clearly (and ideally explain the reasoning)
-- Include tests for the most important scheduling behaviors
+## Setup Instructions
 
-## Getting started
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/applied-ai-system-final.git
+   cd applied-ai-system-final
+   ```
 
-### Setup
+2. **Create and activate a virtual environment:**
+   ```bash
+   python -m venv .venv
+   .venv\\Scripts\\activate   # On Windows
+   # Or: source .venv/bin/activate   # On Mac/Linux
+   ```
 
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the main demo:**
+   ```bash
+   python main.py
+   ```
+
+5. *(Optional)* To run tests:
+   ```bash
+   python -m pytest
+   ```
+
+---
+
+## Example Interactions
+
+**Example 1: Agentic Workflow + RAG**
+
+_Input:_
+```
+goal = "Make sure to feed the pets today!"
+agent.handle_goal(goal)
 ```
 
-### Suggested workflow
-
-1. Read the scenario carefully and identify requirements and edge cases.
-2. Draft a UML diagram (classes, attributes, methods, relationships).
-3. Convert UML into Python class stubs (no logic yet).
-4. Implement scheduling logic in small increments.
-5. Add tests to verify key behaviors.
-6. Connect your logic to the Streamlit UI in `app.py`.
-7. Refine UML so it matches what you actually built.
-
-
-## Features
-
-- **Sorting by Time:** All tasks are automatically sorted in chronological order for clear daily planning.
-- **Conflict Warnings:** The system detects and warns about overlapping or duplicate task times, helping avoid scheduling mistakes.
-- **Daily & Weekly Recurrence:** Marking a recurring task as complete automatically schedules the next occurrence.
-- **Task Filtering:** Tasks can be filtered by completion status or by pet, making it easy to focus on what matters.
-- **Professional UI:** Uses Streamlit components for clear tables, warnings, and success messages.
-
-
-## Testing PawPal+
-
-## 📸 Demo
-
-<a href="/course_images/ai110/pawpal-screenshot.png" target="_blank"><img src='/course_images/ai110/pawpal-screenshot.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>
-
-To run the test suite, use:
-
-```bash
-python -m pytest
+_Output:_
+```
+Received goal: Make sure to feed the pets today!
+Retrieved info: ['Feeding pets should be done in the morning and evening. Make sure to provide fresh water.', ...]
+Added task for Biscuits: 09:00 - Feed pet (agent) (daily) [✗]
+Current tasks: [08:30 - Feed breakfast (daily) [✗], ..., 09:00 - Feed pet (agent) (daily) [✗], ...]
 ```
 
-### What the tests cover
-- Task addition and completion
-- Sorting tasks in chronological order
-- Recurrence logic for daily tasks
-- Conflict detection for duplicate times
+**Example 2: Conflict Detection**
 
-### Confidence Level
-⭐⭐⭐⭐☆ (4/5 stars)
+_Input:_
+```
+pet1.add_task(Task("Playtime", "10:00", "weekly", due_date=today))
+pet2.add_task(Task("Medication", "10:00", "daily", due_date=today))
+conflicts = scheduler.detect_conflicts(owner.get_all_tasks())
+print(conflicts)
+```
 
-All current tests pass, and the core scheduling logic is covered. Further testing may be needed for additional edge cases as the system evolves.
+_Output:_
+```
+['Conflict: 2 tasks scheduled at 10:00 on 2026-04-26 for pets: Biscuits, Jolly Rancher']
+```
+
+**Example 3: Recurring Task Completion**
+
+_Input:_
+```
+scheduler.mark_task_complete(pet1.tasks[0])  # Mark 'Feed breakfast' as complete
+```
+
+_Output:_
+```
+# New 'Feed breakfast' task scheduled for the next day
+```
+
+---
+
+## Design Decisions
+
+- **Agentic Workflow:** Enables the system to plan, act, and self-check, making it robust and extensible.
+- **Retrieval-Augmented Generation:** Allows the agent to provide context-aware advice and explanations, improving user trust and experience.
+- **Modular OOP Design:** Owner, Pet, Task, and Scheduler are decoupled for maintainability and future expansion.
+- **Simplicity vs. Complexity:** Focused on time-based conflicts and recurrence for clarity; avoided over-complicating with duration overlaps or deep preference modeling.
+
+---
+
+## Testing Summary
+
+- **What worked:** Core scheduling, recurrence, and conflict detection logic are reliable and covered by tests. The agent and retriever modules integrate smoothly.
+- **What didn’t:** More advanced planning (e.g., multi-step reasoning, deep preference learning) was out of scope for this version.
+- **What I learned:** Iterative development and modular design made it easy to add AI features without breaking core logic. Testing early and often caught edge cases in recurrence and conflict detection.
+
+---
+
+## Reflection
+
+Building PawPal Deluxe taught me how to combine classic software engineering with modern AI techniques. With this project, I learned to:
+- Design for extensibility (so new AI features can be added easily)
+- Use agentic workflows to automate complex, multi-step tasks
+- Integrate retrieval systems for explainable, context-aware AI
+- Balance user needs, technical feasibility, and clarity in both code and UI
