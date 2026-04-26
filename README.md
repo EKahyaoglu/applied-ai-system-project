@@ -1,3 +1,8 @@
+# Portfolio Artifact
+
+**GitHub Repository:**
+https://github.com/EKahyaoglu/applied-ai-system-project
+
 # PawPal Scheduler
 
 ## Title & Summary
