@@ -1,14 +1,14 @@
-# PawPal Deluxe
+# PawPal Scheduler
 
 ## Title & Summary
 
-**PawPal Deluxe** is a smart assistant for pet owners, designed to automate and optimize daily pet care routines. It helps users track, schedule, and manage all pet-related tasks—feeding, walks, medication, grooming, and more—while leveraging advanced AI to plan, retrieve relevant information, and adapt to changing needs. This project matters because it brings together agentic AI workflows and retrieval-augmented generation (RAG) to make pet care reliable, explainable, and stress-free.
+**PawPal Scheduler** is a smart assistant for pet owners, designed to automate and optimize daily pet care routines. It helps users track, schedule, and manage all pet-related tasks—feeding, walks, medication, grooming, and more—while leveraging advanced AI to plan, retrieve relevant information, and adapt to changing needs. This project matters because it brings together agentic AI workflows and retrieval-augmented generation (RAG) to make pet care reliable, explainable, and stress-free.
 
 ---
 
 ## Architecture Overview
 
-PawPal Deluxe is built around a modular, object-oriented core:
+PawPal Scheduler is built around a modular, object-oriented core:
 - **Owner, Pet, Task, Scheduler:** Represent the real-world entities and handle scheduling, recurrence, and conflict detection.
 - **Retriever (RAG):** Searches a knowledge base (assets) for relevant care tips or instructions.
 - **Agent (Agentic Workflow):** Accepts user goals, plans steps, retrieves information as needed, acts (adds/schedules tasks), and checks its own work.
@@ -120,7 +120,7 @@ _Output:_
 
 ## Reflection
 
-Building PawPal Deluxe taught me how to combine classic software engineering with modern AI techniques. With this project, I learned to:
+Building PawPal Scheduler taught me how to combine classic software engineering with modern AI techniques. With this project, I learned to:
 - Design for extensibility (so new AI features can be added easily)
 - Use agentic workflows to automate complex, multi-step tasks
 - Integrate retrieval systems for explainable, context-aware AI
