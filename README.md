@@ -1,16 +1,39 @@
-# Portfolio Artifact
-
+# PawPal Scheduler
 **GitHub Repository:**
-https://github.com/EKahyaoglu/applied-ai-system-project
+https://github.com/yourusername/applied-ai-system-final
 
 **Video Link:**
 https://www.youtube.com/watch?v=zY8fmFipCf8&feature=youtu.be
+---
 
-# PawPal Scheduler
+## System Architecture Diagram
+
+```mermaid
+graph TD
+      A[User] -->|inputs| B[Streamlit UI]
+      B -->|creates/edits| C[Owner, Pet, Task]
+      C -->|managed by| D[Scheduler]
+      D -->|uses| E[Agent]
+      E -->|retrieves info| F[Retriever]
+      F -->|searches| G[Assets/Knowledge Base]
+      E -->|returns plan| B
+      D -->|detects| H[Conflicts]
+      B -->|shows| I[Schedule, Explanations, Warnings]
+```
 
 ## Title & Summary
 
-**PawPal Scheduler** is a smart assistant for pet owners, designed to automate and optimize daily pet care routines. It helps users track, schedule, and manage all pet-related tasks—feeding, walks, medication, grooming, and more—while leveraging advanced AI to plan, retrieve relevant information, and adapt to changing needs. This project matters because it brings together agentic AI workflows and retrieval-augmented generation (RAG) to make pet care reliable, explainable, and stress-free.
+**PawPal Scheduler** is a smart assistant for pet owners, designed to automate and optimize daily pet care routines. It helps users track, schedule, and manage all pet-related tasks, such as feeding, walks, medication, grooming, and more, while leveraging advanced AI to plan, retrieve relevant information, and adapt to changing needs. This project matters because it brings together agentic AI workflows and retrieval-augmented generation (RAG) to make pet care reliable, explainable, and stress-free.
+
+---
+## Screenshots
+
+<p float="left">
+   <img src="assets/AI101-01.png" width="300" />
+   <img src="assets/AI101-02.png" width="300" />
+   <img src="assets/AI101-03.png" width="300" />
+   <img src="assets/SystemDesignArchitecture.png" width = "300" />
+</p>
 
 ---
 
